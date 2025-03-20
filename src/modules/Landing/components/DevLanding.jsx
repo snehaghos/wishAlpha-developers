@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-import Feature from "../components/Features/Feature";
-import Navbar from "../components/Navbar/Navbar";
-import Carousal from "../components/Carousal/Carousal";
-import Testimonials from "../components/Testimonials/Testimonials";
-import Pricing from "../components/Pricing/Pricing";
-import Footer from "../components/Footer/Footer";
-import RegistrationModal from "../components/RegistrationModal/RegistrationModal";
+import Feature from "../../../components/Features/Feature";
+import Navbar from "../../../components/Navbar/Navbar";
+import Carousal from "../../../components/Carousal/Carousal";
+import Testimonials from "../../../components/Testimonials/Testimonials";
+import Pricing from "../../../components/Pricing/Pricing";
+import Footer from "../../../components/Footer/Footer";
+import RegistrationModal from "../../../components/RegistrationModal/RegistrationModal";
 
 // Dummy data
 const features = [
