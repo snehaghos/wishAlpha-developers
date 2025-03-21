@@ -6,7 +6,7 @@ import Feature from "../../../components/Features/Feature";
 import Navbar from "../../../components/Navbar/Navbar";
 import Carousal from "../../../components/Carousal/Carousal";
 import Testimonials from "../../../components/Testimonials/Testimonials";
-import Pricing from "../../../components/Pricing/Pricing";
+// import Pricing from "../../../components/Pricing/Pricing";
 import Footer from "../../../components/Footer/Footer";
 import RegistrationModal from "../../../components/RegistrationModal/RegistrationModal";
 
@@ -18,8 +18,8 @@ const features = [
 ];
 
 const testimonials = [
-  { id: 1, name: "John Doe", role: "Indie Developer", comment: "WishAlpha helped me reach millions of players. Highly recommended!", image: "/images/user1.jpg" },
-  { id: 2, name: "Jane Smith", role: "Game Designer", comment: "The platform is easy to use, and the support team is amazing.", image: "/images/user2.jpg" },
+  { id: 1, name: "John Doe", role: "Indie Developer", comment: "WishAlpha helped me reach millions of players. Highly recommended!", image: "/images/profile1.jpg" },
+  { id: 2, name: "Jane Smith", role: "Game Designer", comment: "The platform is easy to use, and the support team is amazing.", image: "/images/profile2.jpg" },
 ];
 
 const pricingPlans = [
@@ -71,7 +71,7 @@ const DevLanding = () => {
       </div>
 
       {/* Pricing Section */}
-      <div className="py-16 px-6 bg-gray-900">
+      {/* <div className="py-16 px-6 bg-gray-900">
         <motion.h2
           className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -50 }}
@@ -85,7 +85,7 @@ const DevLanding = () => {
             <Pricing key={plan.id} plan={plan} />
           ))}
         </div>
-      </div>
+      </div> */}
 
       <Footer />
       {isRegisterOpen && <RegistrationModal onClose={() => setIsRegisterOpen(false)} />}

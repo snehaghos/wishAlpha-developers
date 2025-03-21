@@ -1,6 +1,7 @@
 // components/HeroSection.js
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Carousal = ({ onRegisterClick }) => {
   return (
@@ -24,14 +25,14 @@ const Carousal = ({ onRegisterClick }) => {
       >
         Join WishAlpha, the leading platform for indie developers to showcase their games to millions of players worldwide.
       </motion.p>
-      <motion.button
+      <Link to="/auth/register"
         onClick={onRegisterClick}
         className="bg-purple-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-purple-700 transition-colors"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         Get Started
-      </motion.button>
+      </Link>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const Testimonials = ({ testimonial }) => {
         <img
           src={testimonial.image}
           alt={testimonial.name}
-          className="w-12 h-12 rounded-full mr-4"
+          className="w-20 h-16 rounded-full mr-4"
         />
         <div>
           <h3 className="text-xl font-bold">{testimonial.name}</h3>
