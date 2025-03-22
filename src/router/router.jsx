@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Guestlayout from '../layouts/GuestLayout/GuestLayout';
 import { Dashboard } from '../pages/Dashboard';
 import { DevLanding } from '../pages/DevLanding';
+import { Login } from '../pages/Login';
+
 import { CreateProject } from '../pages/CreateProject';
 import GamePage from '../GamePage';
 import RegistrationPage from '../components/RegistrationModal/RegistrationModal';
@@ -23,6 +25,8 @@ const Router = () => {
 
       </Route>
       <Route path="/auth/register" element={<RegistrationPage/>} /> 
+      <Route path="/auth/login" element={<Login/>} /> 
+
 
 
     </Routes>
