@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import carbg from '../../../public/images/carbg.jpg';
+import carbg from '/images/carbg.jpg';
 
 const Carousal = () => {
   return (
