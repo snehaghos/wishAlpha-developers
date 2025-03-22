@@ -5,6 +5,8 @@ import { Dashboard } from '../pages/Dashboard';
 import { DevLanding } from '../pages/DevLanding';
 import { CreateProject } from '../pages/CreateProject';
 import GamePage from '../GamePage';
+import RegistrationPage from '../components/RegistrationModal/RegistrationModal';
+
 
 
 const Router = () => {
@@ -17,10 +19,10 @@ const Router = () => {
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/create-project' element={<CreateProject/>} />
         <Route path='/check' element={<GamePage/>} />
-
-        
+    
 
       </Route>
+      <Route path="/auth/register" element={<RegistrationPage/>} /> 
 
 
     </Routes>
