@@ -1,4 +1,3 @@
-// DeveloperLandingPage.js
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -6,6 +5,7 @@ import Feature from "../../../components/Features/Feature";
 import Navbar from "../../../components/Navbar/Navbar";
 import Carousal from "../../../components/Carousal/Carousal";
 import Testimonials from "../../../components/Testimonials/Testimonials";
+import DeveloperTools from "../../../components/DevTools/DevTools";
 // import Pricing from "../../../components/Pricing/Pricing";
 import Footer from "../../../components/Footer/Footer";
 import RegistrationModal from "../../../components/RegistrationModal/RegistrationModal";
@@ -36,7 +36,7 @@ const DevLanding = () => {
       <Navbar onRegisterClick={() => setIsRegisterOpen(true)} />
       <Carousal onRegisterClick={() => setIsRegisterOpen(true)} />
 
-      {/* Why Choose Us Section */}
+ 
       <div className="py-16 px-6 bg-gray-800">
         <motion.h2
           className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
@@ -52,6 +52,9 @@ const DevLanding = () => {
           ))}
         </div>
       </div>
+
+      {/* Developer Tools Section */}
+      <DeveloperTools />
 
       {/* Testimonials Section */}
       <div className="py-16 px-6 bg-gray-800">
