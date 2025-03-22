@@ -31,6 +31,13 @@ const Navbar = ({ onRegisterClick }) => {
         >
           Register
         </Link>
+        <Link to="/auth/Login"
+        
+        className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+        whileHover={{ scale: 1.05 }}
+      >
+        Login
+      </Link>
       </div>
     </nav>
   );
