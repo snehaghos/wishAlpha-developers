@@ -6,19 +6,18 @@ import carbg from '/images/carbg.jpg';
 const Carousal = () => {
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
+  
       <div
         id="parallax-bg"
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-fixed"
         style={{
-          backgroundImage: `url(${carbg})`, // Replace with your image path
+          backgroundImage: `url(${carbg})`, 
         }}
       ></div>
 
-      {/* Gradient Overlay */}
+    
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40 z-0"></div>
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-6 text-center bg-gradient-to-r from-purple-400 to-gray-200 bg-clip-text text-transparent"
