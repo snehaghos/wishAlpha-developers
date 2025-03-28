@@ -5,7 +5,8 @@ import { DeveloperProfile, UpdateProfile } from "../modules/DeveloperProfile";
 import { CreateProject, Projects } from "../modules/Project";
 import Developers from "../modules/Developers";
 import { Settings } from "../modules/Settings";
-import Games from "../components/Games/Games";
+import Games from "../modules/Games";
+
 
 const AuthRouter = () => {
   return (
