@@ -1,4 +1,6 @@
 import { lazy } from "react";
 
 const CreateProject=lazy(()=>import('./components/CreateProject'))
-export {CreateProject};
+const Projects=lazy(()=>import('./components/Projects'))
+
+export {CreateProject,Projects};

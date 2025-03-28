@@ -1,57 +1,114 @@
-export default function CreateProject() {
-    return (
-      <div className="h-[800px] bg-black flex justify-center items-center">
-        <div className="max-w-lg mx-auto p-10 bg-gray-900 text-white shadow-lg h-auto rounded-lg border border-white">
-          <h1 className="text-4xl text-white font-bold mb-6 text-center uppercase drop-shadow-neon">Upload Your Game</h1>
-          <form className="space-y-6 text-white font-medium">
-            <input
-              type="text"
-              name="projectId"
-              placeholder="Project ID"
-              className="w-full p-2 border border-white rounded bg-black text-white placeholder-gray-500 shadow-neon"
-              required
-            />
-            <input
-              type="text"
-              name="gameName"
-              placeholder="Game Name"
-              className="w-full p-2 border border-white rounded bg-black text-white placeholder-gray-500 shadow-neon"
-              required
-            />
-            <input
-              type="text"
-              name="genre"
-              placeholder="Genre"
-              className="w-full p-2 border border-white rounded bg-black text-white placeholder-gray-500 shadow-neon"
-              required
-            />
-            <input
-              type="url"
-              name="thumbnail"
-              placeholder="Thumbnail URL"
-              className="w-full p-2 border border-white rounded bg-black text-white placeholder-gray-500 shadow-neon"
-              required
-            />
-            <textarea
-              name="description"
-              placeholder="Description"
-              className="w-full p-2 border border-white rounded bg-black text-white placeholder-gray-500 shadow-neon"
-              required
-            ></textarea>
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Upload, Gamepad, FileText, Image, File, Loader2 } from "lucide-react";
+
+function CreateProject() {
+  const [gameData, setGameData] = useState({
+    projectId: "",
+    gameName: "",
+    genre: "",
+    thumbnail: "",
+    description: "",
+    projectFile: null,
+    uploading: false,
+    uploadStatus: ""
+  });
+
+  const handleChange = (e) => {
+    setGameData({ ...gameData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    setGameData({ ...gameData, projectFile: e.target.files[0] });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setGameData({ ...gameData, uploading: true, uploadStatus: "Uploading..." });
+    
+    setTimeout(() => {
+      setGameData({ ...gameData, uploading: false, uploadStatus: "Upload complete!" });
+    }, 3000);
+  };
+
+  return (
+    <div className="p-6 bg-[url(/images/2.png)] text-white min-h-screen flex flex-col items-center">
+      <div className="w-full max-w-3xl bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-700">
+        <h1 className="text-3xl font-bold text-blue-400 flex items-center gap-2">
+          <Gamepad size={32} /> Create New Game Project
+        </h1>
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <input
+            type="text"
+            name="gameName"
+            placeholder="Game Name"
+            value={gameData.gameName}
+            onChange={handleChange}
+            className="w-full p-3 bg-gray-800 text-white rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <input
+            type="text"
+            name="genre"
+            placeholder="Genre (e.g. Action, Adventure)"
+            value={gameData.genre}
+            onChange={handleChange}
+            className="w-full p-3 bg-gray-800 text-white rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <input
+            type="url"
+            name="thumbnail"
+            placeholder="Thumbnail URL"
+            value={gameData.thumbnail}
+            onChange={handleChange}
+            className="w-full p-3 bg-gray-800 text-white rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <textarea
+            name="description"
+            placeholder="Game Description"
+            value={gameData.description}
+            onChange={handleChange}
+            className="w-full p-3 bg-gray-800 text-white rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+          <div className="flex items-center justify-between p-4 bg-gray-800 rounded-md border border-gray-700">
+            <span className="text-gray-400 flex items-center gap-2">
+              <File size={20} /> {gameData.projectFile ? gameData.projectFile.name : "No file chosen"}
+            </span>
             <input
               type="file"
               name="projectFile"
-              className="w-full p-2 border border-white rounded bg-black text-gray-500 shadow-neon"
+              onChange={handleFileChange}
+              className="hidden"
+              id="fileUpload"
               required
             />
-            <button
-              type="submit"
-              className="w-full bg-white text-black py-2 rounded hover:bg-gray-300 font-semibold shadow-neon"
-            >
-              Upload Game
-            </button>
-          </form>
-        </div>
+            <label htmlFor="fileUpload" className="cursor-pointer bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600">
+              <Upload size={20} /> Upload File
+            </label>
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 bg-violet-700 text-white rounded-md hover:bg-violet-800 transition flex items-center justify-center gap-2"
+          >
+            {gameData.uploading ? <Loader2 className="animate-spin" size={20} /> : <Upload size={20} />}
+            {gameData.uploading ? "Uploading..." : "Submit Game"}
+          </button>
+          {gameData.uploadStatus && (
+            <p className="text-center mt-2 text-green-400">{gameData.uploadStatus}</p>
+          )}
+        </form>
+        <Link
+          to="/dashboard"
+          className="block text-center mt-4 text-blue-300 hover:text-blue-400 transition"
+        >
+          Back to Dashboard
+        </Link>
       </div>
-    );
+    </div>
+  );
 }
+
+export default CreateProject;
