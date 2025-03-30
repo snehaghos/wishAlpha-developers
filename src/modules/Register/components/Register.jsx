@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import RegisterContextProvider from "./context/RegisterContextProvider";
-import useRegisterContext from "./context/features/useRegisterContext";
+import RegisterContextProvider from "../context/RegisterContextProvider";
+import useRegisterContext from "../context/features/useRegisterContext";
 
 function Register() {
   const {
