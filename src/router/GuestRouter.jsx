@@ -19,7 +19,7 @@ const GuestRouter = () => {
           <Route path="/support" element={<Support/>} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/auth/register" element={<Register />} />
       </Routes>
     </>
   );

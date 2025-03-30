@@ -1,63 +1,76 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useLoginContext } from "../contexts/features/useLoginContext";
 
-const Login = () => {
+function Login() {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    handleLogin,
+  } = useLoginContext();
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6">
-      <div className="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all hover:scale-105">
-        <h1 className="text-3xl font-bold text-center mb-6 text-purple-400">Welcome Back, Developer!</h1>
-        
-        <form className="space-y-6">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-300">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              className="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Enter your username"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-300">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Enter your password"
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="remember-me"
-                name="remember-me"
-                className="h-4 w-4 text-purple-500 focus:ring-purple-500 border-gray-600 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-300">Remember me</label>
-            </div>
-
-            <a href="#" className="text-sm text-purple-400 hover:text-purple-300">Forgot password?</a>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-purple-600 text-white font-bold rounded-md hover:bg-purple-700 transition-all transform hover:scale-105"
-          >
-            Login
-          </button>
-        </form>
-
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-400">Don't have an account? <Link to="/auth/register" className="text-purple-400 hover:text-purple-300">Sign up</Link></p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-900 via-gray-900 to-purple-900 px-6">
+      <div className="flex flex-col md:flex-row w-full max-w-5xl shadow-xl rounded-2xl overflow-hidden border border-gray-700">
+        <div className="md:w-1/2 h-96 md:h-auto">
+          <img
+            src="/images/carbg.jpg"
+            alt="Gaming"
+            className="w-full h-full object-cover"
+          />
         </div>
+        <motion.div
+          className="md:w-1/2 bg-gray-900 p-10 text-white flex flex-col justify-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-3xl font-bold mb-4">
+            <span className="text-pink-500">Sign In</span>
+            <span className="text-white"> to unleash</span> <br />
+            <span className="text-purple-400">
+              the Developer within you!
+            </span>
+          </h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-4">
+              <label className="block text-sm mb-1">Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-sm mb-1">Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-pink-900 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:bg-orange-600 transition-all duration-300"
+            >
+              Sign In
+            </button>
+          </form>
+          <p className="text-center mt-8 text-gray-400"></p>
+          Don't have an account?
+          <Link to="/register" className="text-purple-400 cursor-pointer">
+            Register
+          </Link>
+        </motion.div>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
