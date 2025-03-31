@@ -1,67 +1,83 @@
-
 import React from "react";
 import { motion } from "framer-motion";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const RegistrationModal = ({ onClose }) => {
+const RegistrationPage = () => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6">
-      <motion.div
-        className="bg-gray-800 rounded-xl p-8 w-full max-w-md"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <h2 className="text-2xl font-bold mb-6">Register as a Developer</h2>
-        <form>
-          <div className="mb-6">
-            <label htmlFor="name" className="block text-gray-300 mb-2">
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your full name"
-              className="w-full px-4 py-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-            />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="email" className="block text-gray-300 mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-            />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-300 mb-2">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              className="w-full px-4 py-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
-          >
-            Register
-          </button>
-        </form>
-        <button
-          onClick={onClose}
-          className="mt-4 text-gray-300 hover:text-purple-400 transition-colors"
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-900 via-gray-900 to-purple-900 px-6">
+      <div className="flex flex-col md:flex-row w-full max-w-5xl shadow-xl rounded-2xl overflow-hidden border border-gray-700">
+ 
+        <div className="md:w-1/2 h-96 md:h-auto">
+          <img
+            src="/images/carbg.jpg" 
+            alt="Gaming"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <motion.div
+          className="md:w-1/2 bg-gray-900 p-10 text-white flex flex-col justify-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          Close
-        </button>
-      </motion.div>
+          <h2 className="text-3xl font-bold mb-4">
+            <span className="text-pink-500">Sign Up</span>{" "}
+            <span className="text-white">to unleash</span> <br />
+            <span className="text-purple-400">the Developer within you!</span>
+          </h2>
+
+          <form>
+            <div className="mb-4">
+              <label className="block text-sm mb-1">Name</label>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+         
+            <div className="mb-4">
+              <label className="block text-sm mb-1">Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-sm mb-1">Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-sm mb-1">Confirm Password</label>
+              <input
+                type="confirm password"
+                placeholder="Re-enter your password"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg placeholder-gray-500 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-pink-900 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:bg-orange-600 transition-all duration-300"
+            >
+              Sign Up
+            </button>
+          </form>
+
+          <p className="text-center mt-8 text-gray-400"></p>
+            Already have an account?{" "}
+            <Link to="/auth/Login" className="text-purple-400 cursor-pointer">Login</Link>
+        
+        </motion.div>
+      </div>
     </div>
   );
 };
 
-export default RegistrationModal;
+export default RegistrationPage;

@@ -1,70 +1,147 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+import { Activity, Gamepad, Users } from "lucide-react";
 
+function Dashboard() {
 
-const Dashboard = () => {
-  const navigate = useNavigate();
-  const handleCreateProject = () => {
-    navigate("/create-project");
-  }
+  const pieData = [
+    { name: "Chess", value: 400 },
+    { name: "Minesweeper", value: 300 },
+    { name: "Reversi", value: 300 },
+    { name: "Ludo", value: 200 },
+  ];
+
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
+  const barData = [
+    { name: "Jan", uv: 4000, pv: 2400 },
+    { name: "Feb", uv: 3000, pv: 1398 },
+    { name: "Mar", uv: 2000, pv: 9800 },
+    { name: "Apr", uv: 2780, pv: 3908 },
+    { name: "May", uv: 1890, pv: 4800 },
+    { name: "Jun", uv: 2390, pv: 3800 },
+    { name: "Jul", uv: 3490, pv: 4300 },
+  ];
+
+  const stats = [
+    {
+      label: "No of Games Uploaded",
+      value: 38,
+      icon: <Gamepad className="w-6 h-6 text-blue-400" />,
+    },
+    {
+      label: "No of Game Views",
+      value: 5000,
+      icon: <Users className="w-6 h-6 text-green-400" />,
+    },
+    {
+      label: "No of User Interactions",
+      value: 1200,
+      icon: <Activity className="w-6 h-6 text-violet-400" />,
+    },
+  ];
 
   return (
-    <div className="flex-1 p-4 bg-gray-900 text-white min-h-screen h-full overflow-y-auto">
-      <h1 className="text-3xl font-bold text-blue-400 border-b-4 border-violet-500 pb-2 shadow-blue">
-        Dashboard
-      </h1>
-      <button className="px-2 py-3 bg-violet-700 text-white rounded-md" onClick={handleCreateProject()}>Create Project</button>
+    <div className="p-6 bg-[url(/images/2.png)] text-white min-h-screen">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-center">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400">
+          Dashboard
+        </h1>
+        <Link
+          to="/create-project"
+          className="px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base bg-violet-700 text-white rounded-md hover:bg-violet-800 transition"
+        >
+          Create Project
+        </Link>
+      </div>
 
-      <div className="grid grid-cols-3 gap-6 mt-6">
-        {["No of games uploaded", "No of game views", "No of user interactions"].map((text, i) => (
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {stats.map((stat, index) => (
           <div
-            key={i}
-            className="bg-glass p-4 rounded-lg text-center shadow-blue border border-blue-400 transition-transform transform hover:scale-105 hover:shadow-violet cursor-pointer"
+            key={index}
+            className="p-4 flex items-center space-x-4 bg-gray-800 rounded-md shadow-md"
           >
-            <p className="text-md font-semibold text-violet-400">{text}</p>
-            <p className="text-2xl font-bold text-blue-300">38</p>
+            {stat.icon}
+            <div>
+              <p className="text-md font-semibold text-gray-400">{stat.label}</p>
+              <p className="text-2xl font-bold text-blue-300">{stat.value}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mt-6">
-        {[{ src: "./images/graph.png", label: "Graph of uploaded games" }, { src: "./images/graph1.png", label: "Graph of game views" }].map((item, i) => (
-          <div
-            key={i}
-            className="bg-glass p-6 rounded-lg text-center shadow-blue border border-violet-500 transition-transform transform hover:scale-105 hover:shadow-violet cursor-pointer"
-          >
-            <img
-              src={item.src}
-              alt={item.label}
-              className="w-20 h-20 rounded-lg mx-auto border-2 border-white shadow-blue"
-            />
-            <p className="text-violet-300 text-lg mt-2 font-semibold">{item.label}</p>
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {/* Pie Chart */}
+        <div className="p-6 bg-gray-800 rounded-md shadow-md w-full">
+          <h2 className="text-lg font-bold text-blue-300">Game Distribution</h2>
+          <div className="w-full flex justify-center overflow-x-auto">
+            <PieChart width={300} height={300}>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                label
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
           </div>
-        ))}
+        </div>
+
+        {/* Bar Chart */}
+        <div className="p-6 bg-gray-800 rounded-md shadow-md w-full">
+          <h2 className="text-lg font-bold text-blue-300">Monthly Stats</h2>
+          <div className="w-full overflow-x-auto">
+            <BarChart width={400} height={250} data={barData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="pv" fill="#8884d8" />
+              <Bar dataKey="uv" fill="#82ca9d" />
+            </BarChart>
+          </div>
+        </div>
       </div>
 
-      <h2 className="text-2xl font-bold text-violet-400 mt-6 border-b-2 border-blue-500 pb-2 shadow-blue">
+      {/* Active Games */}
+      <h2 className="text-xl sm:text-2xl font-bold text-violet-400 mt-6">
         Active Games
       </h2>
-      <div className="bg-glass p-6 rounded-lg grid grid-cols-2 gap-6 mt-4 shadow-blue">
-        {[
-          { name: "Chess", image: "./images/chess.png", category: "Board Game" },
-          { name: "Minesweeper", image: "./images/mines.png", category: "Puzzle Game" },
-          { name: "Reversi (Othello)", image: "./images/reversi.png", category: "Strategy Game" },
-          { name: "Ludo", image: "./images/ludo.png", category: "Classic Game" },
-        ].map((game, i) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+        {["Chess", "Mines", "Reversi", "Ludo"].map((game, i) => (
           <div
             key={i}
-            className="flex items-center space-x-2 bg-glass p-3 rounded-lg shadow-blue border border-blue-400 transition-transform transform hover:scale-105 hover:shadow-violet cursor-pointer"
+            className="flex items-center p-4 space-x-4 bg-gray-800 rounded-md shadow-md"
           >
             <img
-              src={game.image}
-              alt={game.name}
-              className="w-16 h-16 rounded-lg border-2 border-white shadow-blue"
+              src={`./images/${game.toLowerCase()}.png`}
+              alt={game}
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-md border"
             />
             <div>
-              <p className="text-md font-semibold text-blue-300">{game.name}</p>
-              <p className="text-sm text-violet-300">{game.category}</p>
+              <p className="text-lg font-semibold text-blue-300">{game}</p>
             </div>
           </div>
         ))}
@@ -72,4 +149,5 @@ const Dashboard = () => {
     </div>
   );
 }
+
 export default Dashboard;

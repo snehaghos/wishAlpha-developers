@@ -1,37 +1,82 @@
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  LayoutDashboard,
+  User,
+  Code,
+  Gamepad2,
+  FolderKanban,
+  Settings,
+} from "lucide-react";
 import { Link } from "react-router-dom";
-import "../../dashboard/context/features/useDashboardContext"
-import { useDashboardContext } from "../../dashboard/context/features/useDashboardContext";
 
-
-
-export function Sidebar() {
-  const { isOpen, setIsOpen } = useDashboardContext();
-
-  const menuItems = [
-    "Home",
-    "Profile",
-    "Settings",
-    "Logout",
-    "Games",
-    "Developers",
-    "Dashboard",
-  ];
-
+function Sidebar({ isOpen, setIsOpen }) {
   return (
-    <div className={`bg-gray-800 p-5 transition-all duration-300 ${isOpen ? "w-64" : "w-20"}`}>
-      <button onClick={() => setIsOpen(!isOpen)} className="text-white mb-4">
-        {isOpen ? <X className="hover:bg-gray-500" size={36} /> : <Menu  className="hover:bg-gray-500" size={36} />}
-      </button>
-      <ul className="space-y-4">
-        {menuItems.map((item) => (
-          <li key={item} className="cursor-pointer hover:text-blue-400 hover:bg-gray-500 transition duration-300">
-            <Link to={`/${item.toLowerCase()}`} className="block p-2">
-              {isOpen ? item : item[0]}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {!isOpen && (
+        <button
+          className="p-3 bg-gray-800 text-white rounded-full fixed top-6 left-6 z-50 shadow-lg 
+          hover:bg-gray-700 transition-all duration-300 ease-in-out"
+          onClick={() => setIsOpen(true)}
+        >
+          <Menu size={28} />
+        </button>
+      )}
+      <div
+        className={`fixed top-0 left-0 h-screen w-64 bg-gray-900 text-white shadow-lg transform 
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} 
+        transition-transform duration-300 ease-in-out border-r-4 border-gray-700`}
+      >
+        <div className="flex justify-between items-center p-5 border-b border-gray-700">
+          <span className="text-2xl font-bold tracking-wide">🎮 GameHub</span>
+          <button
+            className="p-2 text-white hover:bg-gray-700 rounded-md transition"
+            onClick={() => setIsOpen(false)}
+          >
+            <X size={28} />
+          </button>
+        </div>
+        <div className="p-6 space-y-6 text-lg font-medium">
+          <Link
+            to="/"
+            className="p-3 flex items-center space-x-3 hover:bg-gray-700 rounded-md cursor-pointer transition"
+          >
+            <LayoutDashboard size={20} /> <span>Dashboard</span>
+          </Link>
+          <Link
+            to="/profile"
+            className="p-3 flex items-center space-x-3 hover:bg-gray-700 rounded-md cursor-pointer transition"
+          >
+            <User size={20} /> <span>Profile</span>
+          </Link>
+          <Link
+            to="/developers"
+            className="p-3 flex items-center space-x-3 hover:bg-gray-700 rounded-md cursor-pointer transition"
+          >
+            <Code size={20} /> <span>Developers</span>
+          </Link>
+          <Link
+            to="/games"
+            className="p-3 flex items-center space-x-3 hover:bg-gray-700 rounded-md cursor-pointer transition"
+          >
+            <Gamepad2 size={20} /> <span>Games</span>
+          </Link>
+          <Link
+            to="/projects"
+            className="p-3 flex items-center space-x-3 hover:bg-gray-700 rounded-md cursor-pointer transition"
+          >
+            <FolderKanban size={20} /> <span>Projects</span>
+          </Link>
+          <Link
+            to="/setting"
+            className="p-3 flex items-center space-x-3 hover:bg-gray-700 rounded-md cursor-pointer transition"
+          >
+            <Settings size={20} /> <span>Settings</span>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
+
+export default Sidebar;
