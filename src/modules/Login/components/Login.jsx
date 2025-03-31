@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useLoginContext } from "../contexts/features/useLoginContext";
+import useLoginContext from "../contexts/features/useLoginContext";
 
 function Login() {
   const {
@@ -64,7 +64,7 @@ function Login() {
           </form>
           <p className="text-center mt-8 text-gray-400"></p>
           Don't have an account?
-          <Link to="/register" className="text-purple-400 cursor-pointer">
+          <Link to="/auth/register" className="text-purple-400 cursor-pointer">
             Register
           </Link>
         </motion.div>
