@@ -30,7 +30,7 @@ function Feature() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {features.map((feature) => (
           <motion.div
-            className={`${feature.color} p-6 rounded-xl text-center shadow-lg`}
+            className={`${feature.color} p-6 rounded-xl text-center shadow-lg hover:cursor-pointer`}
             whileHover={{ scale: 1.05 }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
