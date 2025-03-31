@@ -20,6 +20,11 @@ function Developers() {
       username: "pjhyett",
       email: "pj@github.com",
     },
+    {
+      profileImageUrl: "https://avatars.githubusercontent.com/u/3?v=4",
+      username: "pjhyett",
+      email: "pj@github.com",
+    },
   ];
 
   const filteredDevelopers = developers.filter(
